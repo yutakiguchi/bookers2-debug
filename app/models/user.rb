@@ -17,6 +17,21 @@ class User < ApplicationRecord
   has_many :followers,through: :reverse_of_relationships,source: :follower
   has_many :relationships,class_name:"Relationship",foreign_key:"follower_id",dependent: :destroy
   has_many :followings,through: :relationships,source: :followed
+
+ def self.looks(search,word)
+   if search=="perfect_match"
+      @user=User.where("name LIKE?","#{word}")
+   elsif search=="forward_match"
+     @user=User.where("name LIKE?","#{word}%")
+   elsif search=="backword_match"
+     @user=User.where("name LIKE?","%#{word}")
+   else search=="partical_match"
+     @user=User.where("name LIKE?","%#{word}%")
+     
+   end  
+ end
+     
+
   def follow(user_id)
     relationships.create(followed_id: user_id)
   end
