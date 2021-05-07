@@ -1,0 +1,13 @@
+
+       <tbody>
+         <tr>
+     <%book_coments.each do|book_coment|%>
+          <td><%=attachment_image_tag(book_coment.user,:profile_image, :fill,100,100,fallback:"no-image-icon.jpg")%><br/>
+          <%=book_coment.user.name%></td>
+         <td> <%=book_coment.coment%></td>
+         <%if current_user.id==book_coment.user.id%>
+         <td><%=link_to 'Destroy',book_book_coment_path(book_coment.book,book_coment),method: :delete,remote: true,class:"btn btn-sm btn-danger"%></td>
+          <%end%>
+       </tr>
+        <%end%>
+        </tbody>

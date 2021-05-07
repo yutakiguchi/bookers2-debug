@@ -1,0 +1,4 @@
+           <%=form_with(model:[book,book_coment],class:"coment_form",remote: true)do |f|%>
+           <%=f.text_area:coment,class:"coment"%></br>
+          <%=f.submit "送信する",class:"coment_submit"%>
+          <%end%>
